@@ -847,7 +847,8 @@ img {
   width: 232px;
   justify-self: center;
   margin-bottom: 12px;
-  border-radius: 6px;
+  border-radius: 12px;
+  margin-top: -6px;
 }
 
 /*==================== TESTIMONIAL ====================*/
