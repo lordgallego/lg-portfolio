@@ -848,7 +848,6 @@ img {
   justify-self: center;
   margin-bottom: 12px;
   border-radius: 12px;
-  margin-top: -18px;
 }
 
 /*==================== TESTIMONIAL ====================*/
@@ -1411,7 +1410,7 @@ img {
   .project__container {
     background-color: var(--first-color-second);
     border-radius: 1rem;
-    padding: 3rem 2.5rem 0;
+    padding: 2rem 2.5rem 0;
     grid-template-columns: 1fr max-content;
     column-gap: 3rem;
   }
