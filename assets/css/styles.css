@@ -846,7 +846,7 @@ img {
 .project__img {
   width: 232px;
   justify-self: center;
-  margin-bottom: 12px;
+  margin-bottom: var(--mb-1-5);
   border-radius: 12px;
 }
 
@@ -1410,7 +1410,7 @@ img {
   .project__container {
     background-color: var(--first-color-second);
     border-radius: 1rem;
-    padding: 2rem 2.5rem 0;
+    padding: 1.5rem 2.5rem 0;
     grid-template-columns: 1fr max-content;
     column-gap: 3rem;
   }
