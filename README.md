@@ -1,6 +1,6 @@
 # Lord Gallego's Responsive Portfolio Website
 
-## Website URL: www.lordgallego.vercel.app
+## Website URL: https://lordgallego.vercel.app
 
 <!-- - The design is based on [Bedimcode](https://github.com/bedimcode) -->
 
