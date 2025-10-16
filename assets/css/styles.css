@@ -312,7 +312,7 @@ img {
   grid-column: 1/3;
 }
 
-.home__titke {
+.home__title {
   font-size: var(--big-font-size);
 }
 
@@ -787,6 +787,20 @@ img {
   margin-bottom: 0.5rem;
   color: var(--title-color);
   text-align: center;
+}
+
+.paper__logo {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+.paper__links {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
 }
 
 .paper__button {
