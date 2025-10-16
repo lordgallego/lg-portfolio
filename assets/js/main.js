@@ -126,6 +126,34 @@ let swiperTestimonial = new Swiper('.testimonial__container', {
     }
   });
 
+/*==================== WORK IMAGES SWIPER ====================*/
+let swiperWork = new Swiper('.work-swiper', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
+    },
+    
+    pagination: {
+      el: '.swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints:{
+        320:{
+            slidesPerView: 1,
+        },
+        768:{
+            slidesPerView: 1,
+        },
+        1024:{
+            slidesPerView: 1,
+        }
+    }
+  });
+
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 const sections = document.querySelectorAll('section[data-id]')
 
