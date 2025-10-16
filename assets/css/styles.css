@@ -420,6 +420,47 @@ img {
   align-self: center;
 }
 
+/* Work Images Swiper */
+.about__img-scroller {
+  width: 100%;
+  max-width: 350px;
+  justify-self: center;
+  align-self: center;
+}
+
+.work-swiper {
+  width: 100%;
+  height: auto;
+}
+
+.work-swiper .swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.work-swiper .about__img {
+  width: 100%;
+  max-width: 350px;
+  height: auto;
+  object-fit: cover;
+  border-radius: 0.5rem;
+}
+
+.work-swiper .swiper-pagination {
+  position: relative;
+  margin-top: 1rem;
+}
+
+.work-swiper .swiper-pagination-bullet {
+  background-color: var(--first-color);
+  opacity: 0.5;
+}
+
+.work-swiper .swiper-pagination-bullet-active {
+  opacity: 1;
+}
+
 .about__description {
   text-align: justify;
   margin-bottom: var(--mb-2-5);
