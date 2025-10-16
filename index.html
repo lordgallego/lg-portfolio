@@ -167,7 +167,7 @@
                                     129.362C2.45775 97.8511 -7.48481 59.1033 6.67581 34.5279C20.9871 10.1032 59.7028 
                                     -0.149132 97.9666 0.00163737C136.23 0.303176 174.193 10.857 190.312 36.4879Z"/>
 
-                                    <image class="home__blob-img" x='0' y='-60' xlink:href="assets/img/pogi.jpg"/>
+                                    <image class="home__blob-img" x='0' y='-60' xlink:href="assets/img/profile-photo.jpg"/>
                                 </g>
                             </svg>
                         </div>
@@ -880,47 +880,51 @@
                 <!-- Filter Buttons -->
                 <div class="filter__buttons">
                     <button class="filter__btn active" data-filter="all">All</button>
-                    <!-- <button class="filter__btn" data-filter="journal">Journal</button>
-                    <button class="filter__btn" data-filter="proceedings">Proceedings</button> -->
+                    <button class="filter__btn" data-filter="journal">Journal</button>
+                    <button class="filter__btn" data-filter="proceedings">Proceedings</button>
                     <button class="filter__btn" data-filter="theses">Theses</button>
                 </div>
             
                 <!-- Papers Grid -->
                 <div class="papers__grid container">
-                    <!-- Journal -->
-                    <!-- <div class="paper__card" data-category="journal">
-                        <img src="assets/img/sa.jpg" alt="Pool Scrubbing Simulation" class="paper__img">
-                        <h5 class="paper__title">A Novel Correlation for Bubble Size Variation in the Swarm Region under Pool Scrubbing Conditions</h5>
-                         <a href="https://doi.org/10.1016/j.pnucene.2024.105366" target="_blank" class="button button--flex button--small paper__button">
-                            Read More  <i class="uil uil-external-link-alt button__iconsmall "></i>
-                        </a>
-                    </div> -->
-            
-                    <!-- Proceedings -->
-                    <!-- <div class="paper__card" data-category="proceedings">
-                        <img src="assets/img/sa.jpg" alt="Pool Scrubbing Analysis" class="paper__img">
-                        <h5 class="paper__title">Improving Swarm Region Modeling in Pool Scrubbing through a Mean Bubble Size Approach</h5>
-                         <a href="https://www.researchgate.net/publication/385878760_Improving_Swarm_Region_Modeling_in_Pool_Scrubbing_Through_a_Mean_Bubble_Size_Approach" target="_blank" class="button button--flex button--small paper__button">
-                            Read More  <i class="uil uil-external-link-alt button__iconsmall "></i>
-                        </a>
-                    </div> -->
+                    <!-- ResearchGate Paper -->
+                    <div class="paper__card" data-category="proceedings">
+                        <div class="paper__logo">
+                            <i class="uil uil-book-open" style="font-size: 3rem; color: var(--first-color); margin-bottom: 1rem;"></i>
+                        </div>
+                        <h5 class="paper__title">Smart Parking Space Detection Using YOLO and Computer Vision for Open-Space University Parking</h5>
+                        <div class="paper__links">
+                            <a href="https://www.researchgate.net/publication/393937067_Smart_Parking_Space_Detection_Using_YoLo_and_Computer_Vision_for_Open-Space_University_Parking?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjoiaG9tZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0" target="_blank" class="button button--flex button--small paper__button">
+                                <i class="uil uil-book-open" style="margin-right: 0.5rem;"></i>ResearchGate
+                            </a>
+                        </div>
+                    </div>
+
+                    <!-- IEEE Paper -->
+                    <div class="paper__card" data-category="proceedings">
+                        <div class="paper__logo">
+                            <i class="uil uil-file-alt" style="font-size: 3rem; color: var(--first-color); margin-bottom: 1rem;"></i>
+                        </div>
+                        <h5 class="paper__title">Smart Parking Space Detection Using YOLO and Computer Vision for Open-Space University Parking</h5>
+                        <div class="paper__links">
+                            <a href="https://ieeexplore.ieee.org/document/11081004" target="_blank" class="button button--flex button--small paper__button">
+                                <i class="uil uil-file-alt" style="margin-right: 0.5rem;"></i>IEEE Xplore
+                            </a>
+                        </div>
+                    </div>
 
                     <!-- Theses -->
                     <div class="paper__card" data-category="theses">
-                        <img src="assets/img/sa.png" alt="Ph.D. Dissertation" class="paper__img">
+                        <div class="paper__logo">
+                            <i class="uil uil-graduation-cap" style="font-size: 3rem; color: var(--first-color); margin-bottom: 1rem;"></i>
+                        </div>
                         <h5 class="paper__title">Smart Parking Space Detection Using YOLO and Computer Vision for Open-Space University Parking</h5>
-                         <a href="https://www.facebook.com/LrdLvrGllg" target="_blank" class="button button--flex button--small paper__button">
-                            Read More  <i class="uil uil-external-link-alt button__iconsmall "></i>
-                        </a>
+                        <div class="paper__links">
+                            <a href="https://www.researchgate.net/publication/393937067_Smart_Parking_Space_Detection_Using_YoLo_and_Computer_Vision_for_Open-Space_University_Parking?_tp=eyJjb250ZXh0Ijp7InBhZ2UiOiJwcm9maWxlIiwicHJldmlvdXNQYWdlIjoiaG9tZSIsInBvc2l0aW9uIjoicGFnZUNvbnRlbnQifX0" target="_blank" class="button button--flex button--small paper__button">
+                                <i class="uil uil-graduation-cap" style="margin-right: 0.5rem;"></i>Thesis
+                            </a>
+                        </div>
                     </div>
-            
-                    <!-- <div class="paper__card" data-category="theses">
-                        <img src="assets/img/sa.jpg" alt="Master's Thesis" class="paper__img">
-                        <h5 class="paper__title">A Comparative Study of DVI Line Break Accident between ATLAS Facility and APR1400</h5>
-                        <a href="https://www.researchgate.net/publication/306223958_A_Comparative_Study_of_DVI_Line_Break_Accident_between_ATLAS_Facility_and_APR1400" target="_blank" class="button button--flex button--small paper__button">
-                            Read More  <i class="uil uil-external-link-alt button__iconsmall "></i>
-                        </a>
-                    </div> -->
             
                     <!-- Add more paper cards here -->
 
