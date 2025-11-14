@@ -405,3 +405,152 @@ loadMoreBtn.addEventListener('click', () => {
 document.addEventListener('DOMContentLoaded', () => {
     filterPapers('all'); // Initialize with "all" filter on page load
 });
+
+/*==================== PORTFOLIO INTERACTIVE FEATURES ====================*/
+// Add CSS for ripple effect
+const style = document.createElement('style');
+style.textContent = `
+    .portfolio__item {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .ripple {
+        position: absolute;
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.6);
+        transform: scale(0);
+        animation: ripple-animation 0.6s ease-out;
+        pointer-events: none;
+        z-index: 10;
+    }
+    
+    @keyframes ripple-animation {
+        to {
+            transform: scale(4);
+            opacity: 0;
+        }
+    }
+`;
+document.head.appendChild(style);
+
+// Initialize portfolio features after DOM loads
+document.addEventListener('DOMContentLoaded', () => {
+    const portfolioItems = document.querySelectorAll('.portfolio__item');
+    
+    if (portfolioItems.length > 0) {
+        // Intersection Observer for portfolio animations
+        const portfolioObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.style.animationPlayState = 'running';
+                    portfolioObserver.unobserve(entry.target);
+                }
+            });
+        }, {
+            threshold: 0.1
+        });
+
+        portfolioItems.forEach(item => {
+            portfolioObserver.observe(item);
+        });
+
+        // Add click ripple effect to portfolio items
+        portfolioItems.forEach(item => {
+            item.addEventListener('click', function(e) {
+                const ripple = document.createElement('span');
+                const rect = this.getBoundingClientRect();
+                const size = Math.max(rect.width, rect.height);
+                const x = e.clientX - rect.left - size / 2;
+                const y = e.clientY - rect.top - size / 2;
+                
+                ripple.style.width = ripple.style.height = size + 'px';
+                ripple.style.left = x + 'px';
+                ripple.style.top = y + 'px';
+                ripple.classList.add('ripple');
+                
+                this.appendChild(ripple);
+                
+                setTimeout(() => {
+                    ripple.remove();
+                }, 600);
+            });
+        });
+    }
+});
+
+/*==================== ENHANCED SCROLL ANIMATIONS ====================*/
+// Smooth scroll with offset for fixed header
+document.addEventListener('DOMContentLoaded', () => {
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            const href = this.getAttribute('href');
+            if (href !== '#' && href.length > 1) {
+                e.preventDefault();
+                const target = document.querySelector(href);
+                if (target) {
+                    const headerOffset = 80;
+                    const elementPosition = target.getBoundingClientRect().top;
+                    const offsetPosition = elementPosition + window.pageYOffset - headerOffset;
+
+                    window.scrollTo({
+                        top: offsetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+        });
+    });
+});
+
+/*==================== ENHANCED INTERACTIVE FEATURES ====================*/
+// Add tilt effect on mouse move for portfolio items
+document.addEventListener('DOMContentLoaded', () => {
+    const portfolioItems = document.querySelectorAll('.portfolio__item');
+    
+    portfolioItems.forEach(item => {
+        item.addEventListener('mousemove', function(e) {
+            const rect = this.getBoundingClientRect();
+            const x = e.clientX - rect.left;
+            const y = e.clientY - rect.top;
+            
+            const centerX = rect.width / 2;
+            const centerY = rect.height / 2;
+            
+            const rotateX = (y - centerY) / 10;
+            const rotateY = (centerX - x) / 10;
+            
+            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+        });
+        
+        item.addEventListener('mouseleave', function() {
+            this.style.transform = '';
+        });
+    });
+});
+
+// Add typing animation to home title (optional enhancement)
+const homeTitle = document.querySelector('.home__title');
+if (homeTitle) {
+    const text = homeTitle.textContent;
+    homeTitle.textContent = '';
+    let i = 0;
+    
+    function typeWriter() {
+        if (i < text.length) {
+            homeTitle.textContent += text.charAt(i);
+            i++;
+            setTimeout(typeWriter, 100);
+        }
+    }
+    
+    // Only run on first load
+    if (sessionStorage.getItem('typed') !== 'true') {
+        setTimeout(() => {
+            typeWriter();
+            sessionStorage.setItem('typed', 'true');
+        }, 500);
+    } else {
+        homeTitle.textContent = text;
+    }
+}
