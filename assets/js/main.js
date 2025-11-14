@@ -445,6 +445,12 @@ document.addEventListener('DOMContentLoaded', () => {
                 if (entry.isIntersecting) {
                     entry.target.style.animationPlayState = 'running';
                     portfolioObserver.unobserve(entry.target);
+                    
+                    // Load iframe when item comes into view
+                    const iframe = entry.target.querySelector('.portfolio__iframe');
+                    if (iframe && !iframe.classList.contains('loaded')) {
+                        loadIframe(iframe);
+                    }
                 }
             });
         }, {
@@ -458,6 +464,11 @@ document.addEventListener('DOMContentLoaded', () => {
         // Add click ripple effect to portfolio items
         portfolioItems.forEach(item => {
             item.addEventListener('click', function(e) {
+                // Don't trigger ripple if clicking on the button
+                if (e.target.closest('.portfolio__button')) {
+                    return;
+                }
+                
                 const ripple = document.createElement('span');
                 const rect = this.getBoundingClientRect();
                 const size = Math.max(rect.width, rect.height);
@@ -478,6 +489,51 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
+
+// Function to handle iframe loading
+function loadIframe(iframe) {
+    const loadingDiv = iframe.nextElementSibling;
+    
+    // Set a timeout to show loading state
+    const timeout = setTimeout(() => {
+        if (!iframe.classList.contains('loaded')) {
+            // If iframe hasn't loaded after 5 seconds, keep showing loading state
+            // This handles cases where X-Frame-Options blocks the iframe
+        }
+    }, 5000);
+    
+    // Try to detect if iframe loaded successfully
+    iframe.addEventListener('load', () => {
+        clearTimeout(timeout);
+        iframe.classList.add('loaded');
+        if (loadingDiv) {
+            setTimeout(() => {
+                loadingDiv.style.display = 'none';
+            }, 500);
+        }
+    });
+    
+    // Handle iframe errors (X-Frame-Options blocking)
+    iframe.addEventListener('error', () => {
+        clearTimeout(timeout);
+        // Keep loading state visible if iframe fails to load
+        if (loadingDiv) {
+            loadingDiv.style.opacity = '1';
+        }
+    });
+    
+    // For cross-origin iframes, we can't detect load events reliably
+    // So we'll show the iframe after a delay and let the browser handle it
+    setTimeout(() => {
+        if (!iframe.classList.contains('loaded')) {
+            iframe.classList.add('loaded');
+            // Keep loading div visible but faded for sites that block iframes
+            if (loadingDiv) {
+                loadingDiv.style.opacity = '0.3';
+            }
+        }
+    }, 2000);
+}
 
 /*==================== ENHANCED SCROLL ANIMATIONS ====================*/
 // Smooth scroll with offset for fixed header
