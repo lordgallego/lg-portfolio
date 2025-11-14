@@ -492,13 +492,11 @@ document.addEventListener('DOMContentLoaded', () => {
 
 // Function to handle iframe loading
 function loadIframe(iframe) {
-    const loadingDiv = iframe.nextElementSibling;
-    
-    // Set a timeout to show loading state
+    // Set a timeout to show iframe
     const timeout = setTimeout(() => {
         if (!iframe.classList.contains('loaded')) {
-            // If iframe hasn't loaded after 5 seconds, keep showing loading state
-            // This handles cases where X-Frame-Options blocks the iframe
+            // If iframe hasn't loaded after 5 seconds, still try to show it
+            iframe.classList.add('loaded');
         }
     }, 5000);
     
@@ -506,20 +504,13 @@ function loadIframe(iframe) {
     iframe.addEventListener('load', () => {
         clearTimeout(timeout);
         iframe.classList.add('loaded');
-        if (loadingDiv) {
-            setTimeout(() => {
-                loadingDiv.style.display = 'none';
-            }, 500);
-        }
     });
     
     // Handle iframe errors (X-Frame-Options blocking)
     iframe.addEventListener('error', () => {
         clearTimeout(timeout);
-        // Keep loading state visible if iframe fails to load
-        if (loadingDiv) {
-            loadingDiv.style.opacity = '1';
-        }
+        // Still show the iframe even if there's an error
+        iframe.classList.add('loaded');
     });
     
     // For cross-origin iframes, we can't detect load events reliably
@@ -527,10 +518,6 @@ function loadIframe(iframe) {
     setTimeout(() => {
         if (!iframe.classList.contains('loaded')) {
             iframe.classList.add('loaded');
-            // Keep loading div visible but faded for sites that block iframes
-            if (loadingDiv) {
-                loadingDiv.style.opacity = '0.3';
-            }
         }
     }, 2000);
 }
