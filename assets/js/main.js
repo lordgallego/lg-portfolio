@@ -157,8 +157,9 @@ let swiperWork = new Swiper('.work-swiper', {
 /*==================== TALENTFLOW ONBOARDING SWIPER ====================*/
 let swiperTalentflow = new Swiper('.talentflow-swiper', {
     loop: true,
+    loopFillGroupWithBlank: false,
     grabCursor: true,
-    spaceBetween: 20,
+    spaceBetween: 0,
     autoplay: {
         delay: 5000,
         disableOnInteraction: false,
@@ -176,12 +177,15 @@ let swiperTalentflow = new Swiper('.talentflow-swiper', {
     breakpoints:{
         320:{
             slidesPerView: 1,
+            centeredSlides: true,
         },
         768:{
             slidesPerView: 1,
+            centeredSlides: true,
         },
         1024:{
             slidesPerView: 1,
+            centeredSlides: true,
         }
     }
   });
@@ -189,8 +193,9 @@ let swiperTalentflow = new Swiper('.talentflow-swiper', {
 /*==================== AUTOMATION WORKFLOWS SWIPER ====================*/
 let swiperAutomation = new Swiper('.automation-swiper', {
     loop: true,
+    loopFillGroupWithBlank: false,
     grabCursor: true,
-    spaceBetween: 30,
+    spaceBetween: 0,
     autoplay: {
         delay: 6000,
         disableOnInteraction: false,
@@ -208,15 +213,19 @@ let swiperAutomation = new Swiper('.automation-swiper', {
     breakpoints:{
         320:{
             slidesPerView: 1,
+            centeredSlides: true,
         },
         568:{
             slidesPerView: 1,
+            centeredSlides: true,
         },
         768:{
             slidesPerView: 1,
+            centeredSlides: true,
         },
         1024:{
             slidesPerView: 1,
+            centeredSlides: true,
         }
     }
   });
