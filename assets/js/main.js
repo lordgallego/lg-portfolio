@@ -190,7 +190,11 @@ let swiperTalentflow = new Swiper('.talentflow-swiper', {
 let swiperAutomation = new Swiper('.automation-swiper', {
     loop: true,
     grabCursor: true,
-    spaceBetween: 20,
+    spaceBetween: 30,
+    autoplay: {
+        delay: 6000,
+        disableOnInteraction: false,
+    },
     
     navigation: {
       nextEl: '.automation-swiper .swiper-button-next',
@@ -206,13 +210,13 @@ let swiperAutomation = new Swiper('.automation-swiper', {
             slidesPerView: 1,
         },
         568:{
-            slidesPerView: 2,
+            slidesPerView: 1,
         },
         768:{
-            slidesPerView: 2,
+            slidesPerView: 1,
         },
         1024:{
-            slidesPerView: 3,
+            slidesPerView: 1,
         }
     }
   });
