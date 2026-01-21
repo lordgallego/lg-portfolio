@@ -661,6 +661,35 @@ document.addEventListener('DOMContentLoaded', () => {
     });
 });
 
+/*==================== IMAGE LAZY LOADING OPTIMIZATION ====================*/
+// Handle image loading for better performance
+document.addEventListener('DOMContentLoaded', function() {
+    const images = document.querySelectorAll('img[loading="lazy"]');
+    
+    images.forEach(img => {
+        img.addEventListener('load', function() {
+            this.classList.add('loaded');
+        });
+        
+        // Fallback for browsers that don't support lazy loading
+        if (!('loading' in HTMLImageElement.prototype)) {
+            const observer = new IntersectionObserver((entries, observer) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const img = entry.target;
+                        img.src = img.dataset.src || img.src;
+                        img.classList.add('loaded');
+                        observer.unobserve(img);
+                    }
+                });
+            }, {
+                rootMargin: '50px'
+            });
+            observer.observe(img);
+        }
+    });
+});
+
 // Add typing animation to home title (optional enhancement)
 const homeTitle = document.querySelector('.home__title');
 if (homeTitle) {
