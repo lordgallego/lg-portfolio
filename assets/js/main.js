@@ -160,10 +160,6 @@ let swiperTalentflow = new Swiper('.talentflow-swiper', {
     loopFillGroupWithBlank: false,
     grabCursor: true,
     spaceBetween: 0,
-    autoplay: {
-        delay: 5000,
-        disableOnInteraction: false,
-    },
     
     navigation: {
       nextEl: '.talentflow-swiper .swiper-button-next',
@@ -177,15 +173,12 @@ let swiperTalentflow = new Swiper('.talentflow-swiper', {
     breakpoints:{
         320:{
             slidesPerView: 1,
-            centeredSlides: true,
         },
         768:{
             slidesPerView: 1,
-            centeredSlides: true,
         },
         1024:{
             slidesPerView: 1,
-            centeredSlides: true,
         }
     }
   });
@@ -196,10 +189,6 @@ let swiperAutomation = new Swiper('.automation-swiper', {
     loopFillGroupWithBlank: false,
     grabCursor: true,
     spaceBetween: 0,
-    autoplay: {
-        delay: 6000,
-        disableOnInteraction: false,
-    },
     
     navigation: {
       nextEl: '.automation-swiper .swiper-button-next',
@@ -213,19 +202,15 @@ let swiperAutomation = new Swiper('.automation-swiper', {
     breakpoints:{
         320:{
             slidesPerView: 1,
-            centeredSlides: true,
         },
         568:{
             slidesPerView: 1,
-            centeredSlides: true,
         },
         768:{
             slidesPerView: 1,
-            centeredSlides: true,
         },
         1024:{
             slidesPerView: 1,
-            centeredSlides: true,
         }
     }
   });
