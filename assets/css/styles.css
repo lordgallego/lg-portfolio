@@ -911,6 +911,28 @@
     grid-template-columns: repeat(2, 1fr);
   }
 
+  .swiper.talentflow-swiper,
+  .swiper.automation-swiper {
+    width: 100%;
+    padding: 0;
+  }
+
+  .talentflow-swiper .swiper-slide,
+  .automation-swiper .swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    min-height: auto;
+    padding: 1rem 0;
+  }
+
+  .talentflow-swiper .projects__img,
+  .automation-swiper .projects__img {
+    width: 100%;
+    max-width: 100%;
+    height: auto;
+  }
+
   .projects__content {
     position: relative;
     background-color: var(--container-color);
@@ -1013,9 +1035,11 @@
   .projects__img {
     width: 100%;
     height: auto;
+    max-height: 600px;
     border-radius: 0.5rem;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
+    background-color: var(--input-color);
   }
 
   .automation__item {
