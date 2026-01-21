@@ -920,13 +920,15 @@
     width: 100vw;
     position: relative;
     left: 50%;
-    transform: translateX(-50%);
-    margin-left: 0;
-    margin-right: 0;
+    right: 50%;
+    margin-left: -50vw;
+    margin-right: -50vw;
     padding: 2rem 0;
     max-width: 100vw;
     margin-top: 0 !important;
     margin-bottom: 0 !important;
+    display: flex;
+    justify-content: center;
   }
 
   .talentflow-swiper .swiper-slide,
@@ -938,8 +940,9 @@
     min-height: 700px;
     padding: 3rem 2rem;
     height: 100%;
-    width: 100% !important;
-    min-width: 100% !important;
+    width: 100vw;
+    max-width: 100vw;
+    flex-shrink: 0;
   }
 
   .talentflow-swiper .projects__img {
@@ -966,6 +969,8 @@
   .automation-swiper .swiper-wrapper {
     align-items: center;
     justify-content: center;
+    width: 100%;
+    display: flex;
   }
 
   .projects__content {
