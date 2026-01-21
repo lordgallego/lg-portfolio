@@ -154,6 +154,69 @@ let swiperWork = new Swiper('.work-swiper', {
     }
   });
 
+/*==================== TALENTFLOW ONBOARDING SWIPER ====================*/
+let swiperTalentflow = new Swiper('.talentflow-swiper', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    autoplay: {
+        delay: 5000,
+        disableOnInteraction: false,
+    },
+    
+    navigation: {
+      nextEl: '.talentflow-swiper .swiper-button-next',
+      prevEl: '.talentflow-swiper .swiper-button-prev',
+    },
+    pagination: {
+      el: '.talentflow-swiper .swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints:{
+        320:{
+            slidesPerView: 1,
+        },
+        768:{
+            slidesPerView: 1,
+        },
+        1024:{
+            slidesPerView: 1,
+        }
+    }
+  });
+
+/*==================== AUTOMATION WORKFLOWS SWIPER ====================*/
+let swiperAutomation = new Swiper('.automation-swiper', {
+    loop: true,
+    grabCursor: true,
+    spaceBetween: 20,
+    
+    navigation: {
+      nextEl: '.automation-swiper .swiper-button-next',
+      prevEl: '.automation-swiper .swiper-button-prev',
+    },
+    pagination: {
+      el: '.automation-swiper .swiper-pagination',
+      clickable: true,
+      dynamicBullets: true,
+    },
+    breakpoints:{
+        320:{
+            slidesPerView: 1,
+        },
+        568:{
+            slidesPerView: 2,
+        },
+        768:{
+            slidesPerView: 2,
+        },
+        1024:{
+            slidesPerView: 3,
+        }
+    }
+  });
+
 /*==================== SCROLL SECTIONS ACTIVE LINK ====================*/
 const sections = document.querySelectorAll('section[data-id]')
 
@@ -547,28 +610,54 @@ document.addEventListener('DOMContentLoaded', () => {
 });
 
 /*==================== ENHANCED INTERACTIVE FEATURES ====================*/
-// Add tilt effect on mouse move for portfolio items
+// Click-based interactivity for portfolio items
 document.addEventListener('DOMContentLoaded', () => {
     const portfolioItems = document.querySelectorAll('.portfolio__item');
     
     portfolioItems.forEach(item => {
-        item.addEventListener('mousemove', function(e) {
+        item.addEventListener('click', function(e) {
+            // Don't activate if clicking on the button or link
+            if (e.target.closest('.portfolio__button') || e.target.closest('a')) {
+                return;
+            }
+            
+            // Remove active class from all items
+            portfolioItems.forEach(i => {
+                if (i !== this) {
+                    i.classList.remove('active');
+                }
+            });
+            
+            // Toggle active class on clicked item
+            this.classList.toggle('active');
+            
+            // Add ripple effect
+            const ripple = document.createElement('span');
             const rect = this.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
+            const size = Math.max(rect.width, rect.height);
+            const x = e.clientX - rect.left - size / 2;
+            const y = e.clientY - rect.top - size / 2;
             
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
+            ripple.style.width = ripple.style.height = size + 'px';
+            ripple.style.left = x + 'px';
+            ripple.style.top = y + 'px';
+            ripple.classList.add('ripple');
             
-            const rotateX = (y - centerY) / 10;
-            const rotateY = (centerX - x) / 10;
+            this.appendChild(ripple);
             
-            this.style.transform = `perspective(1000px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-10px)`;
+            setTimeout(() => {
+                ripple.remove();
+            }, 600);
         });
-        
-        item.addEventListener('mouseleave', function() {
-            this.style.transform = '';
-        });
+    });
+    
+    // Close portfolio when clicking outside
+    document.addEventListener('click', function(e) {
+        if (!e.target.closest('.portfolio__item')) {
+            portfolioItems.forEach(item => {
+                item.classList.remove('active');
+            });
+        }
     });
 });
 
