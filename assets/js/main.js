@@ -694,7 +694,7 @@ if (homeTitle) {
     const text = homeTitle.textContent;
     homeTitle.textContent = '';
     let i = 0;
-    
+
     function typeWriter() {
         if (i < text.length) {
             homeTitle.textContent += text.charAt(i);
@@ -702,7 +702,7 @@ if (homeTitle) {
             setTimeout(typeWriter, 100);
         }
     }
-    
+
     // Only run on first load
     if (sessionStorage.getItem('typed') !== 'true') {
         setTimeout(() => {
@@ -713,3 +713,77 @@ if (homeTitle) {
         homeTitle.textContent = text;
     }
 }
+
+/*==================== STACKED CARDS PORTFOLIO ====================*/
+document.addEventListener('DOMContentLoaded', () => {
+    const stackCards = document.querySelectorAll('.stack__card');
+
+    if (stackCards.length === 0) return;
+
+    stackCards.forEach(card => {
+        const viewBtn = card.querySelector('.stack__card-btn');
+        const closeBtn = card.querySelector('.stack__card-close');
+        const iframe = card.querySelector('.stack__card-iframe');
+        const url = card.dataset.url;
+
+        // View button click - expand card and load iframe
+        if (viewBtn) {
+            viewBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+
+                // Close any other expanded cards
+                stackCards.forEach(otherCard => {
+                    if (otherCard !== card && otherCard.classList.contains('expanded')) {
+                        otherCard.classList.remove('expanded');
+                        const otherIframe = otherCard.querySelector('.stack__card-iframe');
+                        if (otherIframe) {
+                            otherIframe.src = '';
+                        }
+                    }
+                });
+
+                // Toggle current card
+                card.classList.add('expanded');
+
+                // Load iframe when expanding (lazy load)
+                if (iframe && url && !iframe.src) {
+                    iframe.src = url;
+                }
+
+                // Scroll card into view
+                setTimeout(() => {
+                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
+                }, 100);
+            });
+        }
+
+        // Close button click - collapse card
+        if (closeBtn) {
+            closeBtn.addEventListener('click', (e) => {
+                e.stopPropagation();
+                card.classList.remove('expanded');
+
+                // Optionally clear iframe to save memory
+                // if (iframe) iframe.src = '';
+            });
+        }
+    });
+
+    // Close expanded card when clicking outside
+    document.addEventListener('click', (e) => {
+        if (!e.target.closest('.stack__card')) {
+            stackCards.forEach(card => {
+                card.classList.remove('expanded');
+            });
+        }
+    });
+
+    // Close expanded card with Escape key
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') {
+            stackCards.forEach(card => {
+                card.classList.remove('expanded');
+            });
+        }
+    });
+});
