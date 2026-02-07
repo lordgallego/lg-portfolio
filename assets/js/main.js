@@ -717,73 +717,64 @@ if (homeTitle) {
 /*==================== STACKED CARDS PORTFOLIO ====================*/
 document.addEventListener('DOMContentLoaded', () => {
     const stackCards = document.querySelectorAll('.stack__card');
+    const previewModal = document.getElementById('preview-modal');
+    const previewIframe = document.getElementById('preview-modal-iframe');
+    const previewUrl = document.getElementById('preview-modal-url');
+    const previewClose = document.getElementById('preview-modal-close');
+    const previewDotClose = document.getElementById('preview-modal-dot-close');
 
-    if (stackCards.length === 0) return;
+    if (stackCards.length === 0 || !previewModal) return;
 
+    function openPreviewModal(url) {
+        previewIframe.src = url;
+        previewUrl.textContent = url;
+        previewModal.classList.add('active');
+        document.body.style.overflow = 'hidden';
+    }
+
+    function closePreviewModal() {
+        previewModal.classList.remove('active');
+        document.body.style.overflow = '';
+        // Clear iframe after transition completes
+        setTimeout(() => {
+            previewIframe.src = '';
+        }, 300);
+    }
+
+    // View button opens the preview modal
     stackCards.forEach(card => {
         const viewBtn = card.querySelector('.stack__card-btn');
-        const closeBtn = card.querySelector('.stack__card-close');
-        const iframe = card.querySelector('.stack__card-iframe');
         const url = card.dataset.url;
 
-        // View button click - expand card and load iframe
-        if (viewBtn) {
+        if (viewBtn && url) {
             viewBtn.addEventListener('click', (e) => {
                 e.stopPropagation();
-
-                // Close any other expanded cards
-                stackCards.forEach(otherCard => {
-                    if (otherCard !== card && otherCard.classList.contains('expanded')) {
-                        otherCard.classList.remove('expanded');
-                        const otherIframe = otherCard.querySelector('.stack__card-iframe');
-                        if (otherIframe) {
-                            otherIframe.src = '';
-                        }
-                    }
-                });
-
-                // Toggle current card
-                card.classList.add('expanded');
-
-                // Load iframe when expanding (lazy load)
-                if (iframe && url && !iframe.src) {
-                    iframe.src = url;
-                }
-
-                // Scroll card into view
-                setTimeout(() => {
-                    card.scrollIntoView({ behavior: 'smooth', block: 'center' });
-                }, 100);
-            });
-        }
-
-        // Close button click - collapse card
-        if (closeBtn) {
-            closeBtn.addEventListener('click', (e) => {
-                e.stopPropagation();
-                card.classList.remove('expanded');
-
-                // Optionally clear iframe to save memory
-                // if (iframe) iframe.src = '';
+                openPreviewModal(url);
             });
         }
     });
 
-    // Close expanded card when clicking outside
-    document.addEventListener('click', (e) => {
-        if (!e.target.closest('.stack__card')) {
-            stackCards.forEach(card => {
-                card.classList.remove('expanded');
-            });
+    // Close via X button
+    if (previewClose) {
+        previewClose.addEventListener('click', closePreviewModal);
+    }
+
+    // Close via red dot
+    if (previewDotClose) {
+        previewDotClose.addEventListener('click', closePreviewModal);
+    }
+
+    // Close on backdrop click
+    previewModal.addEventListener('click', (e) => {
+        if (e.target === previewModal) {
+            closePreviewModal();
         }
     });
 
-    // Close expanded card with Escape key
+    // Close on Escape key
     document.addEventListener('keydown', (e) => {
-        if (e.key === 'Escape') {
-            stackCards.forEach(card => {
-                card.classList.remove('expanded');
-            });
+        if (e.key === 'Escape' && previewModal.classList.contains('active')) {
+            closePreviewModal();
         }
     });
 });
