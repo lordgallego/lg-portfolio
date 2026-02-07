@@ -1951,10 +1951,6 @@
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.15);
 }
 
-.stack__card.expanded {
-  z-index: 100;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.25);
-}
 
 .stack__card-header {
   display: flex;
@@ -1998,63 +1994,6 @@
   font-size: 1.1rem;
 }
 
-.stack__card-preview {
-  max-height: 0;
-  overflow: hidden;
-  transition: max-height 0.5s cubic-bezier(0.4, 0, 0.2, 1),
-              padding 0.5s cubic-bezier(0.4, 0, 0.2, 1);
-  padding: 0 1.5rem;
-}
-
-.stack__card.expanded .stack__card-preview {
-  max-height: 600px;
-  padding: 0 1.5rem 1.5rem;
-}
-
-.stack__card.expanded .stack__card-btn {
-  display: none;
-}
-
-.stack__card-iframe-wrapper {
-  position: relative;
-  width: 100%;
-  height: 0;
-  padding-bottom: 56.25%; /* 16:9 aspect ratio */
-  background: var(--input-color);
-  border-radius: 0.75rem;
-  overflow: hidden;
-  margin-bottom: 1rem;
-}
-
-.stack__card-iframe {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  border: none;
-  border-radius: 0.75rem;
-}
-
-.stack__card-actions {
-  display: flex;
-  justify-content: center;
-  gap: 1rem;
-  flex-wrap: wrap;
-}
-
-.stack__card-close {
-  background-color: var(--text-color-light);
-  cursor: pointer;
-  border: none;
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.stack__card-close:hover {
-  background-color: var(--text-color);
-}
 
 /* Dark theme adjustments */
 body.dark-theme .stack__card {
@@ -2064,14 +2003,6 @@ body.dark-theme .stack__card {
 
 body.dark-theme .stack__card:hover {
   box-shadow: 0 8px 30px rgba(0, 0, 0, 0.4);
-}
-
-body.dark-theme .stack__card.expanded {
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
-}
-
-body.dark-theme .stack__card-iframe-wrapper {
-  background: var(--input-color);
 }
 
 /* Responsive adjustments */
@@ -2091,14 +2022,6 @@ body.dark-theme .stack__card-iframe-wrapper {
     white-space: normal;
   }
 
-  .stack__card-actions {
-    flex-direction: column;
-  }
-
-  .stack__card-actions .button {
-    width: 100%;
-    justify-content: center;
-  }
 }
 
 @media screen and (min-width: 768px) {
@@ -2110,13 +2033,6 @@ body.dark-theme .stack__card-iframe-wrapper {
     padding: 1.5rem 2rem;
   }
 
-  .stack__card-preview {
-    padding: 0 2rem;
-  }
-
-  .stack__card.expanded .stack__card-preview {
-    padding: 0 2rem 2rem;
-  }
 }
 
 /*==================== PROJECT PREVIEW MODAL ====================*/
