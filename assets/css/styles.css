@@ -2118,3 +2118,128 @@ body.dark-theme .stack__card-iframe-wrapper {
     padding: 0 2rem 2rem;
   }
 }
+
+/*==================== PROJECT PREVIEW MODAL ====================*/
+.preview-modal {
+  position: fixed;
+  inset: 0;
+  z-index: var(--z-modal);
+  background-color: rgba(0, 0, 0, 0.85);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+}
+
+.preview-modal.active {
+  opacity: 1;
+  visibility: visible;
+}
+
+.preview-modal__container {
+  width: 95vw;
+  height: 90vh;
+  max-width: 1440px;
+  margin: auto;
+  border-radius: 12px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 25px 50px -12px rgba(0, 0, 0, 0.5);
+  background-color: #1a1a1a;
+  transform: scale(0.9);
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.preview-modal.active .preview-modal__container {
+  transform: scale(1);
+}
+
+.preview-modal__header {
+  height: 40px;
+  min-height: 40px;
+  background-color: #2D2D2D;
+  display: flex;
+  align-items: center;
+  padding: 0 14px;
+  gap: 8px;
+}
+
+.preview-modal__dots {
+  display: flex;
+  gap: 8px;
+  flex-shrink: 0;
+}
+
+.preview-modal__dot {
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  display: inline-block;
+}
+
+.preview-modal__dot--close {
+  background-color: #FF5F57;
+  cursor: pointer;
+}
+
+.preview-modal__dot--close:hover {
+  background-color: #e0443e;
+}
+
+.preview-modal__dot--minimize {
+  background-color: #FFBD2E;
+}
+
+.preview-modal__dot--maximize {
+  background-color: #28C840;
+}
+
+.preview-modal__url {
+  flex: 1;
+  text-align: center;
+  color: #999;
+  font-size: 12px;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  padding: 0 12px;
+  user-select: all;
+}
+
+.preview-modal__close-btn {
+  color: #999;
+  background: none;
+  border: none;
+  cursor: pointer;
+  font-size: 18px;
+  padding: 2px 6px;
+  line-height: 1;
+  flex-shrink: 0;
+  border-radius: 4px;
+  transition: all 0.15s;
+  font-family: inherit;
+}
+
+.preview-modal__close-btn:hover {
+  color: #fff;
+  background-color: rgba(255, 255, 255, 0.1);
+}
+
+.preview-modal__iframe {
+  display: block;
+  width: 100%;
+  height: calc(100% - 40px);
+  border: none;
+}
+
+@media screen and (max-width: 767px) {
+  .preview-modal__container {
+    width: 100vw;
+    height: 100vh;
+    max-width: none;
+    border-radius: 0;
+  }
+}
